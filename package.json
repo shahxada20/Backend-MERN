@@ -1,0 +1,20 @@
+{
+  "name": "restfulapi",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon Server/server.js",
+    "start": "node Server/server.js"  
+  },
+  "author": "Shahzad",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "nodemon": "^3.1.2",
+    "validator": "^13.12.0"
+  }
+}
