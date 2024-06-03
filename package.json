@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon Server/server.js",
-    "start": "node Server/server.js"  
+    "start": "node Server/server.js"
   },
   "author": "Shahzad",
   "license": "ISC",

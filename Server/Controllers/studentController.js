@@ -16,6 +16,7 @@ export const createStudent = async (req, res) => {
     }
 }
 
+
 // Get all students
 export const getAllStudents = async (req, res) => {
     try {
@@ -25,6 +26,7 @@ export const getAllStudents = async (req, res) => {
         res.status(500).send(error)
     }
 }
+
 
 // Get Student by id
 export const getStudentById = async (req, res) => {
@@ -40,6 +42,7 @@ export const getStudentById = async (req, res) => {
     }
 }
 
+
 // Get Student by Name
 export const getStudentByName = async (req, res) => {
     try {
@@ -54,6 +57,7 @@ export const getStudentByName = async (req, res) => {
     }
 }
 
+
 // Delete student by id
 export const deleteStudent = async (req, res) => {
     try {
@@ -67,6 +71,7 @@ export const deleteStudent = async (req, res) => {
         res.status(500).send(error, { error: "An error occured", details: error })
     }
 }
+
 
 // patch an existing Student data
 export const patchStudent = async (req, res) => {
@@ -84,6 +89,7 @@ export const patchStudent = async (req, res) => {
         res.status(500).send({ error: "An error occurred while updating the student" })
     }
 }
+
 
 // complete update an existing Student data
 export const updateStudent = async (req, res) => {
