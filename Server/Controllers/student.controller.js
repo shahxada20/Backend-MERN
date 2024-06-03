@@ -106,7 +106,7 @@ export const updateStudent = async (req, res) => {
             runValidators: true
         })
         if (!updateStudent) {
-            res.status(406).send({ message: "Student not available" })
+            res.status(406).send({ message: "user not available" })
         } else {
             res.status(202).send(updateStudent)
         }

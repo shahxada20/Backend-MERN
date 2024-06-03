@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
+
 
 const studentSchema = new mongoose.Schema(
     {
@@ -23,11 +25,30 @@ const studentSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        address: {
+        password: {
             type: String,
             required: true,
+            minlength: [8, "password must contain at least 8 characters"]
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false
         }
     }, { timestamps: true }
 )
+
+
+studentSchema.pre('save', async function(next){
+    const user = this;
+    if (!user.isModified("password")){
+        return next();
+    }
+    try {
+        const hash_password = await bcrypt.hash(user.password, 10);
+        user.password = hash_password;
+    } catch (error) {
+        next(error);
+    }
+})
 
 export const Student = mongoose.model("Student", studentSchema);
