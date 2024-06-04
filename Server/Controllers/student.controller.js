@@ -1,19 +1,20 @@
 import { Student } from "../Models/student.model.js";
 
 
-export const home = async (req, res)=> {
+export const home = async (req, res) => {
     try {
-        res.status(200).send("Server is up and running") 
+        res.status(200).send("Server is up and running")
     } catch (error) {
-        res.status(400).send(error) 
-    }}
+        res.status(400).send(error)
+    }
+}
 
 // create a new student
 export const createStudent = async (req, res) => {
     try {
         const user = new Student(req.body);
         await user.save();
-        res.status(201).send({message: "new user created",user});
+        res.status(201).send({ message: "new user created", token: await user.generateAccessToken(), userId: user._id });
     } catch (error) {
         if (error.code === 11000) { // Duplicate key error code
             res.status(409).send({ message: "user email already exists" });
@@ -70,9 +71,9 @@ export const deleteStudent = async (req, res) => {
     try {
         const deleteStudent = await Student.findByIdAndDelete(req.params.id)
         if (!deleteStudent) {
-            res.status(400).send({message: "user not registered or already deleted"});
+            res.status(400).send({ message: "user not registered or already deleted" });
         } else {
-            res.status(200).send({message: "user deleted"})
+            res.status(200).send({ message: "user deleted" })
         }
     } catch (error) {
         res.status(500).send(error, { error: "an error occured while fetching data", details: error })
