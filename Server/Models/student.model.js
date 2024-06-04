@@ -52,7 +52,14 @@ studentSchema.pre('save', async function (next) {
 })
 
 studentSchema.methods.generateAccessToken = function () {
-    return jwt.sign({ id: this._id.toString(), name: this.name, email: this.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRY });
+    return jwt.sign({
+        id: this._id.toString(),
+        name: this.name,
+        email: this.email
+    },
+        process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+    });
 };
 
 export const Student = mongoose.model("Student", studentSchema);
