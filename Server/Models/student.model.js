@@ -51,6 +51,10 @@ studentSchema.pre('save', async function (next) {
     }
 })
 
+studentSchema.methods.comparePassword = async function (password) {
+    return bcrypt.compare(password, this.password)
+}
+
 studentSchema.methods.generateAccessToken = function () {
     return jwt.sign({
         id: this._id.toString(),
