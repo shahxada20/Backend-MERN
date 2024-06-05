@@ -1,5 +1,5 @@
 import { Student } from "../Models/student.model.js";
-
+import bcrypt from "bcryptjs";
 
 export const home = async (req, res) => {
     try {
@@ -14,13 +14,38 @@ export const createStudent = async (req, res) => {
     try {
         const user = new Student(req.body);
         await user.save();
-        res.status(201).send({ message: "new user created", token: await user.generateAccessToken(), userId: user._id });
+        res.status(201).json({
+            message: "New User Created",
+            token: await user.generateAccessToken(),
+            userId: user._id
+        });
     } catch (error) {
         if (error.code === 11000) { // Duplicate key error code
             res.status(409).send({ message: "user email already exists" });
         } else {
             res.status(500).send({ error: "something went wrong", details: error });
         }
+    }
+}
+
+
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ message: "Email and password are required" });
+        }
+        const user = await Student.findOne({ email });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+            return res.status(401).json({ message: "Authentication failed, user not found" })
+        }
+        res.status(200).json({
+            message: "Login Successful, Authorization granted!",
+            token: await user.generateAccessToken(),
+            userId: user._id.toString()
+        });
+    } catch (error) {
+        res.status(500).send("Internal Server Error")
     }
 }
 
