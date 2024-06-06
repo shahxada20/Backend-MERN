@@ -1,7 +1,8 @@
 import express from "express";
-import signupSchema from "../Validator/authValidator.js";
 import validate from "../Middlewares/validate.middleware.js";
-
+import signupSchema from "../Validator/authValidator.js";
+import contactSchema from "../Validator/contactValidator.js";
+import { contactForm } from "../Controllers/contact.controller.js";
 import {
     home,
     registerUser,
@@ -11,7 +12,7 @@ import {
     getStudentByName,
     patchStudent,
     updateStudent,
-    login,
+    login
 } from "../Controllers/student.controller.js"
 
 
@@ -26,3 +27,5 @@ router.get("/student/name/:name", getStudentByName);     // Get user by Name
 router.delete("/student/:id", deleteStudent);    // Delete user by id
 router.patch("/student/:id", patchStudent);     // patch an existing user data
 router.put("/student/:id", updateStudent);    // update all data of existing user
+
+router.post("/contact", validate(contactSchema),contactForm);     // contact us page

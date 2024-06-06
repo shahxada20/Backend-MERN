@@ -17,6 +17,7 @@ Before you begin, ensure you have met the following dependencies requirements:
 - bcryptjs
 - jsonwebtoken
 - validator
+- zod
 
 ## Environment Variables
 

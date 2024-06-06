@@ -31,12 +31,9 @@ export const registerUser = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        if (!email || !password) {
-            return res.status(400).json({ message: "Email and password are required" });
-        }
         const user = await Student.findOne({ email });
         if (!user || !(await user.comparePassword(password))) {
-            return res.status(401).json({ message: "Authentication failed, user not found" })
+            return res.status(401).json({ message: "Authentication failed" })
         }
         res.status(200).json({
             message: "Login Successful, Authorization granted!",
