@@ -1,5 +1,4 @@
 import { Student } from "../Models/student.model.js";
-import bcrypt from "bcryptjs";
 
 export const home = async (req, res) => {
     try {
@@ -9,8 +8,8 @@ export const home = async (req, res) => {
     }
 }
 
-// create a new student
-export const createStudent = async (req, res) => {
+// create a new user
+export const registerUser = async (req, res) => {
     try {
         const user = new Student(req.body);
         await user.save();
@@ -21,9 +20,9 @@ export const createStudent = async (req, res) => {
         });
     } catch (error) {
         if (error.code === 11000) { // Duplicate key error code
-            res.status(409).send({ message: "user email already exists" });
+            res.status(409).json({ message: "email already registered" });
         } else {
-            res.status(500).send({ error: "something went wrong", details: error });
+            res.status(500).json({ message: "something went wrong", error: error });
         }
     }
 }
@@ -68,7 +67,7 @@ export const getStudentById = async (req, res) => {
         if (!indivStudent) {
             res.status(404).send({ error: "user not registered" });
         } else {
-            res.status(202).send(indivStudent)
+            res.status(200).send(indivStudent)
         }
     } catch (error) {
         res.status(500).send({ error: "an error occurred while fetching data", details: error })
@@ -83,7 +82,7 @@ export const getStudentByName = async (req, res) => {
         if (!nameStudent) {
             res.status(404).send({ error: "user not registered" });
         } else {
-            res.status(202).send(nameStudent)
+            res.status(200).send(nameStudent)
         }
     } catch (error) {
         res.status(500).send({ error: "an error occured while fetching data", details: error })

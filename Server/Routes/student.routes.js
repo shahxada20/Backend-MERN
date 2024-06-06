@@ -1,8 +1,10 @@
 import express from "express";
+import signupSchema from "../Validator/authValidator.js";
+import validate from "../Middlewares/validate.middleware.js";
 
 import {
     home,
-    createStudent,
+    registerUser,
     deleteStudent,
     getAllStudents,
     getStudentById,
@@ -14,13 +16,13 @@ import {
 
 
 export const router = new express.Router();
- 
+
 router.get("/", home)
-router.post("/register", createStudent);     // create a new student
-router.post("/login", login);     // create a new student
-router.get("/student", getAllStudents);     // Get all students
-router.get("/student/:id", getStudentById);   // Get Student by id
-router.get("/student/name/:name", getStudentByName);     // Get Student by Name
-router.delete("/student/:id", deleteStudent);    // Delete student by id
-router.patch("/student/:id", patchStudent);     // patch an existing Student data
-router.put("/student/:id", updateStudent);    // complete update an existing Student data
+router.post("/register", validate(signupSchema), registerUser);     // create a new user
+router.post("/login", login);     // user login 
+router.get("/student", getAllStudents);     // Get all users
+router.get("/student/:id", getStudentById);   // Get user by id
+router.get("/student/name/:name", getStudentByName);     // Get user by Name
+router.delete("/student/:id", deleteStudent);    // Delete user by id
+router.patch("/student/:id", patchStudent);     // patch an existing user data
+router.put("/student/:id", updateStudent);    // update all data of existing user

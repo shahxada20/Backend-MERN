@@ -2,23 +2,11 @@
 
 ### RESTful API Project
 
-This project is a RESTful API built with Node.js, Express, and MongoDB. It provides endpoints for managing student data, including creating, reading, updating, and deleting student records.
-
-#### Table of Contents
-
-- [Prerequisites](###prerequisites)
-- [Project Structure](###project-structure)
-- [Environment Variables](#environment-variables)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
-- [API Endpoints](#api-endpoints)
-- [Error Handling](#error-handling)
-- [Contributing](#contributing)
-- [License](#license)
+This project is a RESTful API built with Node.js, Express, and MongoDB. It provides endpoints for managing user data, including CRUD operations.
 
 ## Prerequisites
 
-Before you begin, ensure you have met the following requirements:
+Before you begin, ensure you have met the following dependencies requirements:
 
 - node.js
 - npm
@@ -26,37 +14,26 @@ Before you begin, ensure you have met the following requirements:
 - nodemon
 - Mongoose
 - dotenv
-
-## Project Structure
-
-The project is structured as follows:
-
-RestfulAPI/
-├── Server/
-│ ├── Controllers/
-│ │ └── `studentController.js`
-│ ├── DB/
-│ │ └── `connection.js`
-│ ├── Models/
-│ │ └── `student.model.js`
-│ ├──Public/
-│ ├── Routes/
-│ │ └── `studentRoutes.js`
-│ ├── `app.js`
-│ └── `server.js`
-├── `.env`
-├── `.gitignore`
-├── `package.json`
-├── `package-lock.json`
-└── `README.md`
+- bcryptjs
+- jsonwebtoken
+- validator
 
 ## Environment Variables
 
-Create a `.env` file in the root directory to store environment variables such as the port number and MongoDB URI.
+Create a `.env` file in the root directory to store environment variables such: 
+- PORT
+- MONGODB URI
+- ACCESS_TOKEN_SECRET
+- ACCESS_TOKEN_EXPIRY
 
 
-
-- 400 Bad Request
-- 404 Not Found
-- 409 Conflict
-- 500 Internal Server Error
+## HTTP codes used
+- 200: OK
+- 201: Created
+- 202: Accepted
+- 400: Bad Request
+- 401: Unautorized
+- 404: Not Found
+- 406: Not Acceptable
+- 409: Conflict / Duplicate key Error
+- 500: Internal Server Error
