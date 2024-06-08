@@ -18,6 +18,7 @@ Before you begin, ensure you have met the following dependencies requirements:
 - jsonwebtoken
 - validator
 - zod
+- vite
 
 ## Environment Variables
 
