@@ -6,7 +6,6 @@ const Contact = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        phone: "",
         message: ""
     })
 
@@ -16,9 +15,21 @@ const Contact = () => {
         setUser({ ...user, [name]: value, })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(user)
+        try {
+            const response = await fetch('http://localhost:3000/api/contact', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            })
+        }
+        catch (error) {
+            console.log("register", error)
+        }
     }
 
     return (
@@ -35,20 +46,16 @@ const Contact = () => {
                                 <br />
                                 <form onSubmit={handleSubmit}>
                                     <div>
-                                        <label htmlFor="name">Name</label>
+                                        <label htmlFor="name">Name*</label>
                                         <input type="text" name="name" placeholder="Name" id="name" required autoComplete="off" value={user.name} onChange={handleInput} />
                                     </div>
                                     <div>
-                                        <label htmlFor="email">Email</label>
+                                        <label htmlFor="email">Email*</label>
                                         <input type="text" name="email" placeholder="Email" id="email" required autoComplete="off" value={user.email} onChange={handleInput} />
                                     </div>
                                     <div>
-                                        <label htmlFor="phone">Phone<h5>(optional)</h5></label>
-                                        <input type="text" name="phone" placeholder="Phone" id="phone" required autoComplete="off" value={user.phone} onChange={handleInput} />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="message">Message</label>
-                                        <textarea type="text" name="message" placeholder="write your message" id="message" required autoComplete="off" value={user.message} onChange={handleInput} />
+                                        <label htmlFor="message">Message*</label>
+                                        <textarea type="text" name="message" placeholder="write your message" id="message" rows="5" cols="15" required autoComplete="off" value={user.message} onChange={handleInput} />
                                     </div>
                                     <br />
                                     <button type="submit" className="btn btn-submit">Submit</button>

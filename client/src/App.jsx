@@ -5,7 +5,10 @@ import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
 import Service from "./components/Service.jsx";
 import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
+import Error_page from "./components/Error_page.jsx";
 import { Navbar } from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 const app = () => {
   return (
@@ -13,12 +16,15 @@ const app = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/service" element={<Service />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/service" element={<Service />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="*" element={<Error_page/>}/>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

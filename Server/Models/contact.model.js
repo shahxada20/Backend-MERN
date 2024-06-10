@@ -10,10 +10,6 @@ const contactSchema = new Schema({
         type: String,
         required: true
     },
-    phone: {
-        type: String,
-        required: false
-    },
     message: {
         type: String,
         required: true

@@ -11,11 +11,11 @@ const contactSchema = z.object({
         .trim()
         .email({ message: "Invalid email Address" })
         .max(32, {message: "Email must not be more than 32 characters"}),
-    phone: z
-        .string({message: "Phone is required"})
-        .trim()
-        .min(10,{ message: "Phone must be at least 10 characters"})
-        .max(13, {message: "Phone must not be more than 13 characters"}),
+    // phone: z
+    //     .string({message: "Phone is required"})
+    //     .trim()
+    //     .min(10,{ message: "Phone must be at least 10 characters"})
+    //     .max(13, {message: "Phone must not be more than 13 characters"}),
     message: z
         .string({message: "Message is required"})
         .min(8,{ message: "Message must be at least 8 characters"})
