@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon Server/server.js",
-    "start": "node Server/server.js"
+    "dev": "nodemon server/server.js",
+    "start": "node server/server.js"
   },
   "author": "Shahzad",
   "license": "ISC",
